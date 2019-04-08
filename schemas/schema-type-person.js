@@ -9,6 +9,7 @@ const {
 const ContactType = require('./schema-type-contact')
 const NameType = require('./schema-type-name')
 const AddressType = require('./schema-type-address')
+const DetailsType = require('./schema-type-details')
 
 const schemaType = new GraphQLObjectType({
   name: 'Person',
@@ -27,10 +28,15 @@ const schemaType = new GraphQLObjectType({
         }
       }
     },
-    age: {
-      type: GraphQLInt,
-      // TODO: Get age from DSF instead? Maybe fallback if only option.
-      resolve: (parent, args, context) => context.getAge(context.birthdateFromId(parent.id))
+    details: {
+      type: DetailsType,
+      resolve: async (parent, args, context) => {
+        try {
+          return await context.getDsf.load(parent.id)
+        } catch (error) {
+          throw error
+        }
+      }
     },
     contact: {
       type: ContactType,
