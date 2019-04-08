@@ -11,7 +11,38 @@ const NameType = require('./schema-type-name')
 const AddressType = require('./schema-type-address')
 const DetailsType = require('./schema-type-details')
 
-const schemaType = new GraphQLObjectType({
+// TODO: Seperate FamilyType into own file.
+// ./schema-type-family.js
+// Ref why it's not:
+// https://stackoverflow.com/a/51001564 
+
+const FamilyType = new GraphQLObjectType({
+  name: 'Family',
+  fields: () => ({
+    mother: {
+      description: 'Mother of person',
+      type: PersonType,
+      resolve: (parent) => ({id: parent.motherIdNumber})
+    },
+    father: {
+      description: 'Father of person',
+      type: PersonType,
+      resolve: (parent) => ({id: parent.fatherIdNumber})
+    },
+    spouse: {
+      description: 'Spouse of person',
+      type: PersonType,
+      resolve: (parent) => ({id: parent.spouseIdNumber})
+    },
+    children: {
+      description: 'Children of person',
+      type: new GraphQLList(PersonType),
+      resolve: (parent) => parent.children.map( child => ({id: child.childIdNumber}))
+    }
+  })
+})
+
+const PersonType = new GraphQLObjectType({
   name: 'Person',
   fields: () => ({
     personalId: {
@@ -59,9 +90,20 @@ const schemaType = new GraphQLObjectType({
           throw error
         }
       }
+    },
+    family: {
+      type: FamilyType,
+      resolve: async (parent, args, context) => {
+        try {
+          const dsfPerson = await context.getDsf.load(parent.id)
+          return dsfPerson
+        } catch (error) {
+          throw error
+        }
+      }
     }
   })
 })
 
 
-module.exports = schemaType
+module.exports = PersonType
