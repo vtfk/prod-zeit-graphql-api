@@ -1,12 +1,20 @@
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
+const Dataloader = require('dataloader')
+const birthdateFromId = require('birthdate-from-id')
+const getAge = require('get-age')
+const getKor = require('./lib/lookup-kor')
+const getDsf = require('./lib/lookup-dsf')
 
-// Context will be accessible in all schemas
-const context = {
-  birthdateFromId: require('birthdate-from-id'),
-  getAge: require('get-age'),
-  getKor: require('./lib/lookup-kor'),
-  getDsf: require('./lib/lookup-dsf')
+
+// Caching per request.
+function createLoaders() {
+  return {
+    birthdateFromId: birthdateFromId,
+    getAge: getAge,
+    getKor: new Dataloader(keys => getKor(keys)),
+    getDsf: new Dataloader(keys => getDsf(keys, 'hentDetaljer'))
+  }
 }
 
 try {
@@ -15,10 +23,12 @@ try {
 
   // TODO: Add JWT auth
 
-  app.use('/graphql', graphqlHTTP({
-    schema: schema,
-    context: context,
-    graphiql: true
+  app.use('/graphql', graphqlHTTP( req => {
+    return {
+      schema: schema,
+      context: createLoaders(),
+      graphiql: true
+    }
   }))
 
   app.listen(4000)
