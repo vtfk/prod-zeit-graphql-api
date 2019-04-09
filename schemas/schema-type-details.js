@@ -27,5 +27,4 @@ const schemaType = new GraphQLObjectType({
   })
 })
 
-
 module.exports = schemaType

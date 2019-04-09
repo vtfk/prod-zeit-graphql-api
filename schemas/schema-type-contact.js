@@ -6,7 +6,6 @@ const {
   GraphQLBoolean
 } = require('graphql')
 
-
 const MobileType = require('./schema-type-mobile')
 const EmailType = require('./schema-type-email')
 
@@ -16,7 +15,7 @@ const schemaType = new GraphQLObjectType({
     reserved: {
       description: 'True if person is reserved in KOR',
       type: GraphQLBoolean,
-      resolve: (parent) => parent.reservasjon === 'NEI' ? false : true
+      resolve: (parent) => parent.reservasjon !== 'NEI'
     },
     status: {
       description: 'Returns (AKTIV | SLETTET | IKKE_REGISTRERT) based on status at KOR',
@@ -33,6 +32,5 @@ const schemaType = new GraphQLObjectType({
     }
   })
 })
-
 
 module.exports = schemaType

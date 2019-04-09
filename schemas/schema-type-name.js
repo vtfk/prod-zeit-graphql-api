@@ -6,7 +6,6 @@ const {
   GraphQLBoolean
 } = require('graphql')
 
-
 const schemaType = new GraphQLObjectType({
   name: 'Name',
   fields: () => ({
@@ -32,6 +31,5 @@ const schemaType = new GraphQLObjectType({
     }
   })
 })
-
 
 module.exports = schemaType

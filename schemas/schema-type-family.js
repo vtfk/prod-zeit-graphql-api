@@ -6,7 +6,9 @@ const {
   GraphQLBoolean
 } = require('graphql')
 
-const PersonType = require('./schema-type-person')
+// Currently not in use see: './schema-type-person.js'
+
+const PersonType = require('./schema-type-person').PersonType
 
 const schemaType = new GraphQLObjectType({
   name: 'Family',
@@ -14,25 +16,24 @@ const schemaType = new GraphQLObjectType({
     mother: {
       description: 'Mother of person',
       type: PersonType,
-      resolve: (parent) => ({id: parent.motherIdNumber})
+      resolve: (parent) => ({ id: parent.motherIdNumber })
     },
     father: {
       description: 'Father of person',
       type: PersonType,
-      resolve: (parent) => ({id: parent.fatherIdNumber})
+      resolve: (parent) => ({ id: parent.fatherIdNumber })
     },
     spouse: {
       description: 'Spouse of person',
       type: PersonType,
-      resolve: (parent) => ({id: parent.spouseIdNumber})
+      resolve: (parent) => ({ id: parent.spouseIdNumber })
     },
     children: {
       description: 'Children of person',
       type: new GraphQLList(PersonType),
-      resolve: (parent) => parent.children.map( child => ({id: child.childIdNumber}))
+      resolve: (parent) => parent.children.map(child => ({ id: child.childIdNumber }))
     }
   })
 })
-
 
 module.exports = schemaType

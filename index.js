@@ -6,9 +6,8 @@ const getAge = require('get-age')
 const getKor = require('./lib/lookup-kor')
 const getDsf = require('./lib/lookup-dsf')
 
-
 // Caching per request.
-function createLoaders() {
+function createLoaders () {
   return {
     birthdateFromId: birthdateFromId,
     getAge: getAge,
@@ -23,7 +22,7 @@ try {
 
   // TODO: Add JWT auth
 
-  app.use('/graphql', graphqlHTTP( req => {
+  app.use('/graphql', graphqlHTTP(req => {
     return {
       schema: schema,
       context: createLoaders(),
@@ -34,7 +33,6 @@ try {
   app.listen(4000)
 
   console.log('Running a GraphQL API server at localhost:4000/graphql')
-  
 } catch (error) {
   throw error
 }
