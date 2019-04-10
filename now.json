@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "name": "graphql-api",
+  "env": {
+    "SERVICE_JWT": "@graphql-jwt",
+    "DSF_SERVICE_URL": "@dsf-service-url",
+    "DSF_SERVICE_JWT": "@dsf-service-jwt",
+    "KOR_SERVICE_URL": "@kor-service-url",
+    "KOR_SERVICE_JWT": "@kor-service-jwt"
+  },
+  "builds": [
+      { "src": "index.js", "use": "@now/node" }
+  ]
+}
