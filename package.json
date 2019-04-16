@@ -1,5 +1,5 @@
 {
-  "name": "zeit-graphql-combine-apis",
+  "name": "graphql-combine-apis",
   "version": "0.1.0",
   "description": "Combining APIs we use often in a single GraphQl API.",
   "main": "index.js",
@@ -12,13 +12,11 @@
     "axios": "^0.18.0",
     "birthdate-from-id": "^2.0.0",
     "dataloader": "^1.4.0",
-    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "get-age": "^1.0.1",
     "graphql": "^14.2.1",
     "jsonwebtoken": "^8.5.1",
-    "now-env": "^3.1.0",
     "tfk-dsf-normalize-contact": "^3.1.0"
   }
 }
