@@ -1,5 +1,5 @@
 # [WiP] GraphQL Combined APIs
-GraphQL API which combines several REST APIs.
+GraphQL API that combines several REST APIs.
 
 ## Authentication
 Use a [JWT](https://jwt.io/) as a Bearer token in the header with key "Authorization".
@@ -15,14 +15,27 @@ Example of header:
 
 Tip: The node module [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) is a great way to create JWTs.
 
+## In-code requests
+### Node.js
+Using the [graphql-request](https://www.npmjs.com/package/graphql-request) node module you can easily do GraphQL requests.
+
+Example(s) to be written...
+For now check out the module's [npm page](https://www.npmjs.com/package/graphql-request).
+
 ## Development
+### GraphiQL
 GraphiQL is enabled on the root ("/") route.
 Just use an extension in your browser to add headers on requests, then add an "Authorization" key with the JWT as a value.
-Then navigate to your GraphQL endpoint and graph away.
+Now navigate to your GraphQL endpoint and graph away.
 
 Get more info on how to use it here: https://github.com/graphql/graphiql
 
+### Insomnia
+Insomnia has also GraphQL support.
+Just create a new request, select POST as the method.
+And select GraphQL Query as the body, it can then auto-fetch the schema and provide auto completion.
 
+### Curl
 You can also use curl, but it's not recommended as it's hard to type queries.
 ```bash
 curl \

@@ -21,7 +21,6 @@ try {
   }))
 
   app.get('/')
-  app.listen(4000)
 
   module.exports = app
   console.log('Server started...')
