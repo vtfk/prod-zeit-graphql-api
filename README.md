@@ -17,10 +17,95 @@ Tip: The node module [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) 
 
 ## In-code requests
 ### Node.js
+If you are using VSCode then I recommend the extension [GraphQL](https://marketplace.visualstudio.com/items?itemName=Prisma.vscode-graphql) for writing queries as it provides syntax highlighting. It can also provide autocomplete, schema validation and snippets if you setup a [GraphQL-config](https://github.com/prisma/graphql-config) file.
+
+To use it just prepend a backtick string with `/* GraphQL */`, for example:
+
+```graph
+const query = /* GraphQL */`
+  query getPerson($personalId: [String!]) {
+    persons(personalId: $personalId) {
+      name {
+        firstname
+      }
+    }
+  }
+  `
+```
+
 Using the [graphql-request](https://www.npmjs.com/package/graphql-request) node module you can easily do GraphQL requests.
 
-Example(s) to be written...
-For now check out the module's [npm page](https://www.npmjs.com/package/graphql-request).
+When using variables in the query (personalId in this case) it is recommended to use the internal variable system, rather than string substitutions directly in the query.
+
+This will handle the escaping of characters and provide error messages on unexpected input.
+
+To use variables within a query you write the query like this:
+```graph
+1 query getPerson($personalId: [String!]) { // 
+2   persons(personalId: $personalId) {
+3     name {
+4       firstname
+5     }
+6   }
+7 }
+```
+
+Line 1: Defines the query and the query name (you choose the query name yourself, like defining a function).
+This also declares the variable and it's type, in this case a List containing non-nullable (required) Strings.
+
+Line 2: Here we get the persons field with personalId as an argument.
+The argument get it's value from the $personalId variable, which we specify in the code.
+
+
+Take a look at this example for a full request:
+
+```js
+require('dotenv').config()
+const { GraphQLClient } = require('graphql-request')
+const jwt = require('jsonwebtoken')
+
+// Sign the token with provided secret and an expiry time under 2 minutes
+const jwtToken = jwt.sign({}, process.env.GRAPHQL_JWT, {expiresIn: '2m'})
+
+
+;(async function main() {
+  // Create a new client
+  const graphQLClient = new GraphQLClient(process.env.GRAPHQL_URL, {
+    headers: {
+      authorization: `Bearer ${jwtToken}`,
+    }
+  })
+
+  // Define a new query
+  const query = /* GraphQL */`
+  query getPerson($personalId: [String!]) {
+    persons(personalId: $personalId) {
+      name {
+        firstname
+      }
+    }
+  }
+  `
+
+  // Define the variables
+  const variables = {
+    personalId: ["01010144444"]
+  }
+
+  // Mash it all together and send the request.
+  const data = await graphQLClient.request(query, variables)
+
+  // Pretty-print the results in the terminal.
+  console.log(JSON.stringify(data, undefined, 2))
+})().catch(error => {console.log(error)})
+```
+
+#### Good resources:
+- [GraphQL Docs - queries](https://graphql.org/learn/queries/)
+- [GraphQL Docs - variables](https://graphql.org/learn/queries/#variables)
+- [Node-module (graphql-request)](https://www.npmjs.com/package/graphql-request)
+- [Node-module (jsonwebtoken)](https://www.npmjs.com/package/jsonwebtoken)
+- [VSCode extension - GraphQL](https://marketplace.visualstudio.com/items?itemName=Prisma.vscode-graphql)
 
 ## Development
 ### GraphiQL
