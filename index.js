@@ -2,7 +2,7 @@ const express = require('express')
 const graphqlHTTP = require('express-graphql')
 const jwtAuthVerify = require('./lib/tools/jwt-verify')
 const jwtAuthExpiry = require('./lib/tools/jwt-expiry')
-const createLoaders = require('./lib/tools/dataloaders')
+const getContextTools = require('./lib/tools/get-context-tools')
 
 try {
   const schema = require('./schemas/person-schema')
@@ -15,12 +15,14 @@ try {
   app.use('/', graphqlHTTP(req => {
     return {
       schema: schema,
-      context: createLoaders(),
+      context: getContextTools(),
       graphiql: true
     }
   }))
 
   app.get('/')
+
+  app.listen(4000)
 
   module.exports = app
   console.log('Server started...')
