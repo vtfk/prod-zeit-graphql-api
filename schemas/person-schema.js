@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const {
   GraphQLSchema,
   GraphQLObjectType,
@@ -7,6 +8,7 @@ const {
   GraphQLBoolean,
   validateSchema
 } = require('graphql')
+/* eslint-enable no-unused-vars */
 
 const { PersonType } = require('./schema-type-person')
 
