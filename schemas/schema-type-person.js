@@ -10,6 +10,7 @@ const ContactType = require('./schema-type-contact')
 const NameType = require('./schema-type-name')
 const AddressType = require('./schema-type-address')
 const DetailsType = require('./schema-type-details')
+const GuardianType = require('./schema-type-guardian')
 
 // TODO: Seperate FamilyType into own file.
 // ./schema-type-family.js
@@ -25,9 +26,9 @@ const PersonType = new GraphQLObjectType({
     },
     name: {
       type: NameType,
-      resolve: async (parent, args, context) => {
+      resolve: (parent, args, context) => {
         try {
-          return await context.getDsf.load(parent.id)
+          return context.getDsfDetaljer.load(parent.id)
         } catch (error) {
           throw error
         }
@@ -35,9 +36,9 @@ const PersonType = new GraphQLObjectType({
     },
     details: {
       type: DetailsType,
-      resolve: async (parent, args, context) => {
+      resolve: (parent, args, context) => {
         try {
-          return await context.getDsf.load(parent.id)
+          return context.getDsfDetaljer.load(parent.id)
         } catch (error) {
           throw error
         }
@@ -45,10 +46,9 @@ const PersonType = new GraphQLObjectType({
     },
     contact: {
       type: ContactType,
-      resolve: async (parent, args, context) => {
+      resolve: (parent, args, context) => {
         try {
-          const korPerson = await context.getKor.load(parent.id)
-          return korPerson
+          return context.getKor.load(parent.id)
         } catch (error) {
           throw error
         }
@@ -56,10 +56,9 @@ const PersonType = new GraphQLObjectType({
     },
     address: {
       type: AddressType,
-      resolve: async (parent, args, context) => {
+      resolve: (parent, args, context) => {
         try {
-          const dsfPerson = await context.getDsf.load(parent.id)
-          return dsfPerson
+          return context.getDsfDetaljer.load(parent.id)
         } catch (error) {
           throw error
         }
@@ -67,10 +66,24 @@ const PersonType = new GraphQLObjectType({
     },
     family: {
       type: FamilyType,
+      resolve: (parent, args, context) => {
+        try {
+          return context.getDsfDetaljer.load(parent.id)
+        } catch (error) {
+          throw error
+        }
+      }
+    },
+    guardians: {
+      type: GraphQLList(PersonType),
+      description: 'Returns the guardians of a person below 18, if 18 or above it returns the same person.',
       resolve: async (parent, args, context) => {
         try {
-          const dsfPerson = await context.getDsf.load(parent.id)
-          return dsfPerson
+          if (context.getAge(context.birthdateFromId(parent.id)) < 18) {
+            return context.getGuardians(parent.id, context)
+          } else {
+            return [{ id: parent.id }]
+          }
         } catch (error) {
           throw error
         }
