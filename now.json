@@ -7,7 +7,11 @@
     "DSF_SERVICE_URL": "@dsf2-service-url",
     "DSF_SERVICE_JWT": "@dsf-service-jwt",
     "KOR_SERVICE_URL": "@kor-service-url",
-    "KOR_SERVICE_JWT": "@kor-service-jwt"
+    "KOR_SERVICE_JWT": "@kor-service-jwt",
+    "DSF_URL": "@dsf-url",
+    "DSF_BRUKERNAVN": "@dsf-username",
+    "DSF_PASSORD": "@dsf-password"
+
   },
   "builds": [
       { "src": "index.js", "use": "@now/node" }
