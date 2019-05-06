@@ -1,4 +1,4 @@
-//require('now-env')
+// require('dotenv').config()
 
 module.exports = {
   SERVICE_JWT: process.env.SERVICE_JWT || 'Louie Louie oh no I got to go Louie Louie oh no I got to go',

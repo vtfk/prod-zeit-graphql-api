@@ -8,7 +8,7 @@ const {
   validateSchema
 } = require('graphql')
 
-const PersonType = require('./schema-type-person').PersonType
+const { PersonType } = require('./schema-type-person')
 
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({

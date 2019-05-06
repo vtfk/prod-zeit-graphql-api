@@ -12,6 +12,7 @@
     "axios": "^0.18.0",
     "birthdate-from-id": "^2.0.0",
     "dataloader": "^1.4.0",
+    "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "express-graphql": "^0.8.0",
     "get-age": "^1.0.1",

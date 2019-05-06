@@ -10,7 +10,6 @@ const ContactType = require('./schema-type-contact')
 const NameType = require('./schema-type-name')
 const AddressType = require('./schema-type-address')
 const DetailsType = require('./schema-type-details')
-const GuardianType = require('./schema-type-guardian')
 
 // TODO: Seperate FamilyType into own file.
 // ./schema-type-family.js
