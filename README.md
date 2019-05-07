@@ -25,9 +25,7 @@ To use it just prepend a backtick string with `/* GraphQL */`, for example:
 const query = /* GraphQL */`
   query getPerson($personalId: [String!]) {
     persons(personalId: $personalId) {
-      name {
-        firstname
-      }
+      firstname
     }
   }
   `
@@ -43,9 +41,7 @@ To use variables within a query you write the query like this:
 ```graph
 1 query getPerson($personalId: [String!]) { // 
 2   persons(personalId: $personalId) {
-3     name {
-4       firstname
-5     }
+3     firstname
 6   }
 7 }
 ```
