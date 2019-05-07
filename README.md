@@ -80,8 +80,9 @@ const jwtToken = jwt.sign({}, process.env.GRAPHQL_JWT, {expiresIn: '2m'})
   const query = /* GraphQL */`
   query getPerson($personalId: [String!]) {
     persons(personalId: $personalId) {
-      name {
-        firstname
+      firstname
+      address {
+        zip
       }
     }
   }
@@ -127,7 +128,7 @@ curl \
   -X POST \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <JWT>" \
-  --data '{ "query": "{ persons(personalId: \"11111122222\") { name {fullname} } }" }' \
+  --data '{ "query": "{ persons(personalId: \"11111122222\") { fullname } }" }' \
   https://graphql.example.com/
 ```
 
@@ -146,35 +147,35 @@ Under each field in family you can use the same fields as under "persons".
 {
   persons(personalId: ["111111333333", "22222244444"]) {
     personalId
-    name {
-      fullname
-      firstname
-      middlename
-      surname
-    }
+    fullname
+    firstname
+    middlename
+    surname
     details {
       gender
       age
       alive
     }
-    contact {
-      reserved
-      status
-      email {
-        address
-        updated
-        lastVerified
-      }
-      mobile {
-        number
-        updated
-        lastVerified
-      }
+    reserved
+    status
+    email {
+      address
+      updated
+      lastVerified
+    }
+    mobile {
+      number
+      updated
+      lastVerified
     }
     address {
       address
       zip
       city
+    }
+    guardians {
+      personalId
+      ...
     }
     family {
       mother {
