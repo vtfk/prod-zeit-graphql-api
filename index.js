@@ -22,7 +22,7 @@ try {
 
   app.get('/')
 
-  app.listen(4000)
+  if (process.env.LOCAL_DEV) {app.listen(4000)}
 
   module.exports = app
   console.log('Server started...')
