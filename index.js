@@ -5,7 +5,7 @@ const getContextTools = require('./lib/tools/get-context-tools')
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 
-async function createServer() {
+module.exports = async (req, res) => {
   const app = express();
   app.use('/', jwtAuthVerify)
   app.use('/', jwtAuthExpiry)
@@ -19,15 +19,25 @@ async function createServer() {
     playground: true
   })
 
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ 
+    app,
+    path: '/'
+  });
+
   app.get(`${server.graphqlPath}`)
+
+  if (config.LOCAL_DEV) {
+    app.listen(4000)
+    console.log(`Local server running at http://localhost:4000${server.graphqlPath}`)
+  }
   
-  return app
+  app(req, res)
 }
 
-module.exports = createServer().then(app => {
+//module.exports = createServer()
+/*.then(app => {
   if (config.LOCAL_DEV) {
     app.listen(4000)
     console.log(`Local server running at http://localhost:4000/graphql`)
   }
-})
+})*/
