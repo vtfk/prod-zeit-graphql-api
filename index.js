@@ -1,31 +1,33 @@
-const express = require('express')
-const graphqlHTTP = require('express-graphql')
+const config = require('./config')
 const jwtAuthVerify = require('./lib/tools/jwt-verify')
 const jwtAuthExpiry = require('./lib/tools/jwt-expiry')
 const getContextTools = require('./lib/tools/get-context-tools')
+const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
 
-try {
-  const schema = require('./schemas/person-schema')
-  const app = express()
-
+async function createServer() {
+  const app = express();
   app.use('/', jwtAuthVerify)
-
   app.use('/', jwtAuthExpiry)
 
-  app.use('/', graphqlHTTP(req => {
-    return {
-      schema: schema,
-      context: getContextTools(),
-      graphiql: true
-    }
-  }))
+  const getSchema = require('./remote-schemas/merge-schemas')
+  const schema = await getSchema()
+  const server = new ApolloServer({
+    schema: schema,
+    context: getContextTools(),
+    introspection: true,
+    playground: true
+  })
 
-  app.get('/')
-
-  if (process.env.LOCAL_DEV) {app.listen(4000)}
-
-  module.exports = app
-  console.log('Server started...')
-} catch (error) {
-  throw error
+  server.applyMiddleware({ app });
+  app.get(`${server.graphqlPath}`)
+  
+  return app
 }
+
+module.exports = createServer().then(app => {
+  if (config.LOCAL_DEV) {
+    app.listen(4000)
+    console.log(`Local server running at http://localhost:4000/graphql`)
+  }
+})

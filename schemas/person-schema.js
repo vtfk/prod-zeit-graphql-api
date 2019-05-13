@@ -47,6 +47,5 @@ const schemaErrors = validateSchema(schema)
 if (schemaErrors.length > 0) {
   throw Error(`Error in schema: \n${schemaErrors}`)
 }
-console.log('Validated schema imported...')
 
 module.exports = schema
