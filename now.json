@@ -10,14 +10,16 @@
     "KOR_SERVICE_JWT": "@kor-service-jwt"
   },
   "builds": [
-      { "src": "index.js", "use": "@now/node" }
+      { "src": "index.js", "use": "@now/node" },
+      { "src": "*.md", "use": "@now/md" }
   ],
   "routes": [
     { "src": "/graphql", "dest": "/index.js" },
+    { "src": "/docs", "dest": "/README.html" },
     {
       "src": "/(.*)",
       "status": 301,
-      "headers": { "Location": "/graphql" }
+      "headers": { "Location": "/docs" }
     }
   ],
   "alias": "graphql.service.t-fk.no"
