@@ -8,8 +8,8 @@ const { ApolloServer } = require('apollo-server-express')
 
 module.exports = async (req, res) => {
   const app = express()
-  app.use('/', jwtAuthVerify)
-  app.use('/', jwtAuthExpiry)
+  app.use(jwtAuthVerify)
+  app.use(jwtAuthExpiry)
 
   const schema = await getSchema()
   const server = new ApolloServer({
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
 
   server.applyMiddleware({
     app,
-    path: '/'
+    path: '/graphql'
   })
 
   app.get(`${server.graphqlPath}`)

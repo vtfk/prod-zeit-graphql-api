@@ -12,5 +12,8 @@
   "builds": [
       { "src": "index.js", "use": "@now/node" }
   ],
+  "routes": [
+    { "src": "/graphql", "dest": "/index.js" }
+  ],
   "alias": "graphql.service.t-fk.no"
 }
