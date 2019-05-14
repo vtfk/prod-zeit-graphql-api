@@ -1,4 +1,3 @@
-const config = require('./config')
 const jwtAuthVerify = require('./lib/tools/jwt-verify')
 const jwtAuthExpiry = require('./lib/tools/jwt-expiry')
 const getContextTools = require('./lib/tools/get-context-tools')
@@ -26,18 +25,5 @@ module.exports = async (req, res) => {
 
   app.get(`${server.graphqlPath}`)
 
-  if (config.LOCAL_DEV) {
-    app.listen(4000)
-    console.log(`Local server running at http://localhost:4000${server.graphqlPath}`)
-  }
-
   app(req, res)
 }
-
-// module.exports = createServer()
-/* .then(app => {
-  if (config.LOCAL_DEV) {
-    app.listen(4000)
-    console.log(`Local server running at http://localhost:4000/graphql`)
-  }
-}) */

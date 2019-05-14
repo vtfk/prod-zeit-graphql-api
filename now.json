@@ -13,7 +13,12 @@
       { "src": "index.js", "use": "@now/node" }
   ],
   "routes": [
-    { "src": "/graphql", "dest": "/index.js" }
+    { "src": "/graphql", "dest": "/index.js" },
+    {
+      "src": "/(.*)",
+      "status": 301,
+      "headers": { "Location": "/graphql" }
+    }
   ],
   "alias": "graphql.service.t-fk.no"
 }
