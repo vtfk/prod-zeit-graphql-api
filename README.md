@@ -1,4 +1,4 @@
-# [WiP] GraphQL Combined APIs
+# GraphQL Combined APIs
 GraphQL API that combines several REST APIs.
 
 ## Authentication
