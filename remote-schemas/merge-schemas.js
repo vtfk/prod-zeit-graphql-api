@@ -1,6 +1,6 @@
 const { mergeSchemas } = require('graphql-tools')
 const promisedSchemas = [
-  require('../schemas/person-schema'),
+  require('../schemas/person-schema')
 //  require('./fint')()
 ]
 module.exports = async () => {
