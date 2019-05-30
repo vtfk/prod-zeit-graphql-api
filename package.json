@@ -27,6 +27,6 @@
   },
   "devDependencies": {
     "cross-env": "5.2.0",
-    "now": "15.2.0"
+    "now": "15.3.0"
   }
 }
