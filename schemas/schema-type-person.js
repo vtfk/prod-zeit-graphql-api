@@ -181,17 +181,17 @@ const FamilyType = new GraphQLObjectType({
     mother: {
       description: 'Mother of person',
       type: PersonType,
-      resolve: (parent) => ({ id: parent.motherIdNumber })
+      resolve: (parent) => parent.motherIdNumber ? ({ id: parent.motherIdNumber }) : null
     },
     father: {
       description: 'Father of person',
       type: PersonType,
-      resolve: (parent) => ({ id: parent.fatherIdNumber })
+      resolve: (parent) => parent.fatherIdNumber ? ({ id: parent.fatherIdNumber }) : null
     },
     spouse: {
       description: 'Spouse of person',
       type: PersonType,
-      resolve: (parent) => ({ id: parent.spouseIdNumber })
+      resolve: (parent) => parent.spouseIdNumber ? ({ id: parent.spouseIdNumber }) : null
     },
     children: {
       description: 'Children of person',
