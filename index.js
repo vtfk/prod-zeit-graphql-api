@@ -4,9 +4,16 @@ const getContextTools = require('./lib/tools/get-context-tools')
 const getSchema = require('./remote-schemas/merge-schemas')
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
+const { logConfig } = require('./lib/tools/logger')
+const nanoid = require('nanoid')
 
 module.exports = async (req, res) => {
+  logConfig({}, nanoid())
+
   const app = express()
+
+  // TODO: https://github.com/kkemple/graphql-auth
+  
   app.use(jwtAuthVerify)
   app.use(jwtAuthExpiry)
 

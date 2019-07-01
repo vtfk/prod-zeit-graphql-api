@@ -24,13 +24,15 @@ const schema = new GraphQLSchema({
             description: '[11 chars] This is an unique ID for persons in Norway. AKA fødselsnummer'
           }
         },
-        resolve: (root, args) => {
+        resolve: (root, args, context) => {
           if (!args.personalId) throw Error(`Parameter 'personalId' is required`)
+          context.logger('info', ['person-schema', 'Start', 'Num-ids', args.personalId.length])
 
           return args.personalId.map(id => {
             // Check if id is exactly 11 digits using regex
             // Valid ids will be processed.
             if (!(RegExp(/^\d{11}$/).exec(id))) {
+              context.logger('error', ['person-schema', 'id-wrong-format'])
               throw Error(`Parameter 'personalId' with value '${id}' is not 11 chars or contains non-integer characters`)
             }
 
