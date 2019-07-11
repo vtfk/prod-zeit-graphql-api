@@ -9,6 +9,7 @@ const {
   validateSchema
 } = require('graphql')
 /* eslint-enable no-unused-vars */
+const withAuth = require('graphql-auth').default
 
 const { PersonType } = require('./schema-type-person')
 
@@ -24,7 +25,7 @@ const schema = new GraphQLSchema({
             description: '[11 chars] This is an unique ID for persons in Norway. AKA fødselsnummer'
           }
         },
-        resolve: (root, args, context) => {
+        resolve: withAuth( ['MACHINE', 'ADMIN'], (root, args, context) => {
           if (!args.personalId) throw Error(`Parameter 'personalId' is required`)
           context.logger('info', ['person-schema', 'Start', 'Num-ids', args.personalId.length])
 
@@ -38,7 +39,7 @@ const schema = new GraphQLSchema({
 
             return { id: id }
           })
-        }
+        })
       }
     })
   })

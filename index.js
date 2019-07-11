@@ -1,7 +1,6 @@
-const jwtAuthVerify = require('./lib/tools/jwt-verify')
-const jwtAuthExpiry = require('./lib/tools/jwt-expiry')
+const authenticateUser = require('./lib/tools/authenticate-user')
 const getContextTools = require('./lib/tools/get-context-tools')
-const getSchema = require('./remote-schemas/merge-schemas')
+const getSchema = require('./schemas/merge-schemas')
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 const { logConfig } = require('./lib/tools/logger')
@@ -12,10 +11,7 @@ module.exports = async (req, res) => {
 
   const app = express()
 
-  // TODO: https://github.com/kkemple/graphql-auth
-  
-  app.use(jwtAuthVerify)
-  app.use(jwtAuthExpiry)
+  await authenticateUser.authenticate(req, res)
 
   const schema = await getSchema()
   const server = new ApolloServer({

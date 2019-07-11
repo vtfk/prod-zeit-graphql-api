@@ -7,6 +7,10 @@
     "dev": "cross-env LOCAL_DEV=true && now dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vtfk/prod-zeit-graphql-api.git"
+  },
   "author": "Sherex",
   "license": "MIT",
   "dependencies": {
@@ -19,6 +23,7 @@
     "express": "^4.17.1",
     "get-age": "^1.0.1",
     "graphql": "^14.3.1",
+    "graphql-auth": "^0.2.6",
     "graphql-tools": "^4.0.5",
     "jsonwebtoken": "^8.5.1",
     "nanoid": "^2.0.3",
