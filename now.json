@@ -14,6 +14,22 @@
       { "src": "*.md", "use": "@now/md" }
   ],
   "routes": [
+    {
+      "src": "/(.*)",
+      "continue": true,
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Max-Age": "3600"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "status": 200,
+      "methods": ["OPTIONS"]
+    },
     { "src": "/graphql", "dest": "/index.js" },
     { "src": "/docs", "dest": "/README.html" },
     {
