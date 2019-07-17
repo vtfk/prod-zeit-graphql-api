@@ -87,6 +87,11 @@ const PersonType = new GraphQLObjectType({
         }
       }
     },
+    age: {
+      description: 'Age of person',
+      type: GraphQLInt,
+      resolve: (parent, args, context) => context.getAge(context.birthdateFromId(parent.id))
+    },
     contactReserved: {
       description: 'True if person is reserved in KOR',
       type: GraphQLBoolean,

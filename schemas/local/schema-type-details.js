@@ -18,11 +18,6 @@ const schemaType = new GraphQLObjectType({
       type: GraphQLString,
       resolve: (parent) => parent.gender
     },
-    age: {
-      description: 'Age of person',
-      type: GraphQLInt,
-      resolve: (parent, args, context) => context.getAge(parent.birthDate)
-    },
     alive: {
       description: 'True if person is alive',
       type: GraphQLBoolean,
