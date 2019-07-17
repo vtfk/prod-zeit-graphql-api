@@ -6,6 +6,8 @@ const { ApolloServer } = require('apollo-server-express')
 const { logConfig } = require('./lib/tools/logger')
 const nanoid = require('nanoid')
 
+const schema = getSchema()
+
 module.exports = async (req, res) => {
   logConfig({}, nanoid())
 
@@ -13,9 +15,8 @@ module.exports = async (req, res) => {
 
   await authenticateUser.authenticate(req, res)
 
-  const schema = await getSchema()
   const server = new ApolloServer({
-    schema: schema,
+    schema: await schema,
     context: getContextTools(),
     introspection: true,
     playground: true
