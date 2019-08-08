@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "graphql-api",
+  "scope": "telemark",
   "env": {
     "SERVICE_JWT": "@graphql-jwt",
     "SERVICE_JWT_EXPIRY_TIME": "2m",
