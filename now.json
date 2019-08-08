@@ -28,7 +28,8 @@
     {
       "src": "/(.*)",
       "status": 200,
-      "methods": ["OPTIONS"]
+      "methods": ["OPTIONS"],
+      "dest": "/README.html"
     },
     { "src": "/graphql", "dest": "/index.js" },
     { "src": "/docs", "dest": "/README.html" },
