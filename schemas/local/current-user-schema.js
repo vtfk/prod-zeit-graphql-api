@@ -10,6 +10,7 @@ const {
 } = require('graphql')
 /* eslint-enable no-unused-vars */
 const withAuth = require('graphql-auth').default
+const { ForbiddenError } = require('apollo-server-express')
 
 const { PersonType } = require('./schema-type-person')
 
@@ -21,7 +22,10 @@ const schema = new GraphQLSchema({
         description: 'Contains the current user\'s person object, if using a valid AAD token',
         type: PersonType,
         resolve: withAuth( ['AAD-USER'], (root, args, context) => {
-          if (!context.auth.session.personalId) throw Error(`Context did not contain a personalId`)
+          if (!context.auth.session.personalId) {
+            console.log(JSON.stringify(context.auth, null, 2))
+            throw context.auth.error ? context.auth.error : new ForbiddenError(`Context did not contain a personalId`)
+          }
           const personalId = context.auth.session.personalId
           context.logger('info', ['person-schema', 'Start'])
 
