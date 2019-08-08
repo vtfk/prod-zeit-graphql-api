@@ -25,7 +25,7 @@ const schema = new GraphQLSchema({
             description: '[11 chars] This is an unique ID for persons in Norway. AKA fødselsnummer'
           }
         },
-        resolve: withAuth( ['MACHINE', 'ADMIN'], (root, args, context) => {
+        resolve: withAuth(['MACHINE', 'ADMIN'], (root, args, context) => {
           if (!args.personalId) throw Error(`Parameter 'personalId' is required`)
           context.logger('info', ['person-schema', 'Start', 'Num-ids', args.personalId.length])
 

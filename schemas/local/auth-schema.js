@@ -9,7 +9,6 @@ const {
   validateSchema
 } = require('graphql')
 /* eslint-enable no-unused-vars */
-const withAuth = require('graphql-auth').default
 
 const AuthType = require('./schema-type-auth')
 

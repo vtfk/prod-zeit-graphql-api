@@ -44,7 +44,7 @@ const schemaType = new GraphQLObjectType({
         const tokenAge = Date.now() / 1000 - parent.iat
         return Math.floor(tokenAge)
       }
-    },
+    }
   })
 })
 
