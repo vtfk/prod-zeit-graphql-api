@@ -1,6 +1,6 @@
 {
   "name": "graphql-combine-apis",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Combining APIs we use often in a single GraphQl API.",
   "main": "index.js",
   "scripts": {
