@@ -8,7 +8,9 @@
     "DSF_SERVICE_URL": "@dsf2-service-url",
     "DSF_SERVICE_JWT": "@dsf-service-jwt",
     "KOR_SERVICE_URL": "@kor-service-url",
-    "KOR_SERVICE_JWT": "@kor-service-jwt"
+    "KOR_SERVICE_JWT": "@kor-service-jwt",
+    "IDENTITY_MAPPER_URL": "https://identities.api.minelev.no",
+    "IDENTITY_MAPPER_JWT": "@identity-service-secret"
   },
   "builds": [
       { "src": "index.js", "use": "@now/node" },
