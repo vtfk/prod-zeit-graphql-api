@@ -14,6 +14,7 @@ const AddressType = require('./schema-type-address')
 const DetailsType = require('./schema-type-details')
 const MobileType = require('./schema-type-mobile')
 const EmailType = require('./schema-type-email')
+const LoginType = require('./schema-type-login')
 
 // TODO: Seperate FamilyType into own file.
 // ./schema-type-family.js
@@ -172,6 +173,31 @@ const PersonType = new GraphQLObjectType({
           } else {
             return [{ id: parent.id }]
           }
+        } catch (error) {
+          throw error
+        }
+      }
+    },
+    loginInfo: {
+      description: 'Contains the user\'s new and old username and upn',
+      type: LoginType,
+      resolve: async (parent, args, context) => {
+        try {
+          return context.getIdMapper.load(parent.id)
+        } catch (error) {
+          throw error
+        }
+      }
+    },
+    userType: {
+      description: 'Returns \'STUDENT\', \'EMPLOYEE\' or null, depending on the user\'s role',
+      type: GraphQLString,
+      resolve: async (parent, args, context) => {
+        try {
+          const data = context.getIdMapper.load(parent.id)
+          let role = data.isStudent ? 'STUDENT' : null
+          role = data.isEmployee ? 'EMPLOYEE' : null
+          return role
         } catch (error) {
           throw error
         }

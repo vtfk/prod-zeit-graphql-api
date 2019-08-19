@@ -26,6 +26,7 @@
     "graphql-auth": "^0.2.6",
     "graphql-tools": "^4.0.5",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.3.0",
     "nanoid": "^2.0.3",
     "node-dsf": "^3.0.17",
     "node-fetch": "^2.6.0",
