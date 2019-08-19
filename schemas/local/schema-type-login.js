@@ -11,7 +11,7 @@ const {
 /* eslint-enable no-unused-vars */
 
 const schemaType = new GraphQLObjectType({
-  name: 'Login information',
+  name: 'LoginInformation',
   fields: () => ({
     upn: {
       description: 'User\'s upn',
