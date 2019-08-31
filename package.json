@@ -33,7 +33,7 @@
     "tfk-dsf-normalize-contact": "^3.1.1"
   },
   "devDependencies": {
-    "cross-env": "5.2.0",
+    "cross-env": "5.2.1",
     "now": "15.3.0"
   }
 }
