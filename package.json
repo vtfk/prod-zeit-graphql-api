@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-link-http": "^1.5.15",
-    "apollo-server-express": "^2.6.6",
+    "apollo-server-express": "^2.14.2",
     "axios": "^0.19.0",
     "axios-cache-adapter": "^2.3.3",
     "birthdate-from-id": "^2.0.0",
