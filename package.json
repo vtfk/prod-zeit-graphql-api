@@ -27,7 +27,7 @@
     "graphql-tools": "^4.0.5",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.3.0",
-    "nanoid": "^2.0.3",
+    "nanoid": "^3.0.0",
     "node-dsf": "^3.0.17",
     "node-fetch": "^2.6.0",
     "tfk-dsf-normalize-contact": "^3.1.1"
