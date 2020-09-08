@@ -1,7 +1,5 @@
 {
   "version": 2,
-  "name": "graphql-api",
-  "scope": "telemark",
   "env": {
     "SERVICE_JWT": "@graphql-jwt",
     "SERVICE_JWT_EXPIRY_TIME": "2m",
@@ -9,8 +7,8 @@
     "DSF_SERVICE_JWT": "@dsf-service-jwt",
     "KOR_SERVICE_URL": "@kor-service-url",
     "KOR_SERVICE_JWT": "@kor-service-jwt",
-    "IDENTITY_MAPPER_URL": "https://identities.api.minelev.no",
-    "IDENTITY_MAPPER_JWT": "@identity-service-secret"
+    "IDENTITY_MAPPER_URL": "@identity-service-url",
+    "IDENTITY_MAPPER_JWT": "@identity-service-jwt"
   },
   "builds": [
       { "src": "index.js", "use": "@now/node" },
@@ -41,6 +39,5 @@
       "status": 301,
       "headers": { "Location": "/docs" }
     }
-  ],
-  "alias": "graphql.service.t-fk.no"
+  ]
 }

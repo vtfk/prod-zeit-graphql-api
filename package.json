@@ -1,10 +1,13 @@
 {
-  "name": "graphql-combine-apis",
+  "name": "prod-zeit-graphql-api",
+  "private": "true",
   "version": "0.2.0",
   "description": "Combining APIs we use often in a single GraphQl API.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "echo \"Error: This should be deployed to Vercel, run 'npm run deploy' to deploy it. Or 'npm run dev' to run locally.\" && exit 1",
+    "deploy": "vercel",
+    "dev": "vercel dev"
   },
   "repository": {
     "type": "git",
@@ -22,11 +25,10 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "get-age": "^1.0.1",
-    "graphql": "^15.0.0",
-    "graphql-auth": "^0.2.6",
+    "graphql": "^14.7.0",
+    "graphql-auth": "^1.0.0",
     "graphql-tools": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^3.3.0",
     "nanoid": "^3.0.0",
     "node-dsf": "^3.0.17",
     "node-fetch": "^2.6.0",
@@ -34,6 +36,6 @@
   },
   "devDependencies": {
     "cross-env": "7.0.2",
-    "now": "16.6.0"
+    "vercel": "^20.1.0"
   }
 }

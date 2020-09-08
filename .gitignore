@@ -34,7 +34,7 @@ coverage
 # Bower dependency directory (https://bower.io/)
 bower_components
 
-# node-waf configuration
+# de-waf configuration
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
@@ -70,3 +70,6 @@ typings/
 
 # Testing-spaces and sampledata
 testing/
+
+# Vercel configuration
+.vercel
