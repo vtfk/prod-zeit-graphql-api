@@ -4,7 +4,7 @@ const getSchema = require('./schemas/merge-schemas')
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 const { logConfig } = require('./lib/tools/logger')
-const nanoid = require('nanoid')
+const { nanoid } = require('nanoid')
 
 const schema = getSchema()
 
