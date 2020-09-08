@@ -18,9 +18,9 @@ const schemaType = new GraphQLObjectType({
       description: 'The address',
       resolve: (parent) => parent.address
     },
-    addressStatus: {
+    status: {
       type: AddressStatusType,
-      description: 'Contains information about the address status',
+      description: 'Contains the current address status',
       resolve: (parent) => parent
     },
     zip: {
@@ -37,7 +37,7 @@ const schemaType = new GraphQLObjectType({
 })
 
 const AddressStatusType = new GraphQLObjectType({
-  name: 'AddressStatus',
+  name: 'Status',
   fields: () => ({
     code: {
       type: GraphQLInt,
@@ -48,7 +48,7 @@ const AddressStatusType = new GraphQLObjectType({
     },
     name: {
       type: GraphQLString,
-      description: 'The address status as a string',
+      description: 'The address status name',
       resolve: (parent) => parent.raw.HOV.SPES
     }
   })
