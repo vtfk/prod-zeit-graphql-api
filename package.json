@@ -36,6 +36,6 @@
   },
   "devDependencies": {
     "cross-env": "7.0.3",
-    "vercel": "21.2.0"
+    "vercel": "21.2.1"
   }
 }
