@@ -31,7 +31,6 @@
     "graphql-tools": "^7.0.0",
     "jsonwebtoken": "^8.5.1",
     "nanoid": "^3.1.12",
-    "node-dsf": "^3.0.17",
     "node-fetch": "^2.6.1",
     "tfk-dsf-normalize-contact": "^3.1.2"
   },
