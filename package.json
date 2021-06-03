@@ -7,7 +7,8 @@
   "scripts": {
     "start": "echo \"Error: This should be deployed to Vercel, run 'npm run deploy' to deploy it. Or 'npm run dev' to run locally.\" && exit 1",
     "deploy": "vercel",
-    "dev": "vercel dev"
+    "dev": "vercel dev",
+    "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
   },
   "repository": {
     "type": "git",
