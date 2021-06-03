@@ -22,7 +22,7 @@
     "axios-cache-adapter": "^2.5.0",
     "birthdate-from-id": "^2.0.0",
     "dataloader": "^2.0.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^9.0.0",
     "express": "^4.17.1",
     "get-age": "^1.0.1",
     "graphql": "^15.3.0",
