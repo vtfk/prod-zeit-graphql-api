@@ -3,8 +3,8 @@
   "env": {
     "SERVICE_JWT": "@graphql-jwt",
     "SERVICE_JWT_EXPIRY_TIME": "2m",
-    "DSF_SERVICE_URL": "@dsf2-service-url",
-    "DSF_SERVICE_JWT": "@dsf-service-jwt",
+    "DSF_SERVICE_URL": "@dsf3-service-url",
+    "DSF_SERVICE_JWT": "@dsf3-service-jwt",
     "KOR_SERVICE_URL": "@kor2-service-url",
     "KOR_SERVICE_JWT": "@kor2-service-jwt",
     "IDENTITY_MAPPER_URL": "@identity-service-url",
